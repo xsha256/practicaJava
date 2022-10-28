@@ -7,6 +7,7 @@ public class Gestor extends Persona {
         //! constructor por defecto
         public Gestor(){
         }
+
           //! constructor parametrizado 
     public Gestor (int id, String nombre, String telefono, int idOficina){
         //*  atributos heredados de Persona
@@ -16,12 +17,24 @@ public class Gestor extends Persona {
          this.idOficina = idOficina;
     }
 
+        //! consultor
+    public int getIdOficina() {
+		return idOficina;
+	}
+
+
+        //! Modificador
+	public void setIdOficina(int idOficina) {
+		this.idOficina = idOficina;
+	}
+
         //! Mostar info 
     public void mostrarInfo() {
         super.mostrarInfo();
-        System.out.println("Id de oficina: " + idOficina);
-       
+        System.out.println("Id de oficina: " + idOficina + "\n");
     }
+
+    
 
 
 
