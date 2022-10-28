@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class ArrayListTest {
     public static void main(String[] args){
@@ -109,6 +110,41 @@ public class ArrayListTest {
 
          //* Mostrar el elemento  por el id
          System.out.println(mapa.get(2));
-       
+
+
+         //! Random numbers 
+       Random random = new Random();
+       int enterAleatorio = random.nextInt(100, 300);
+       System.out.println("Aleatorio: " + enterAleatorio);
+
+       double enterAleatorio1 = random.nextDouble(100, 150.50);
+       System.out.println("Aleatorio: " + enterAleatorio1);
+
+       boolean booleano = random.nextBoolean();
+       System.out.println("Aleatorio: " + booleano);
+
+      //  ArrayList<String> nombres = new ArrayList<>();
+
+
+
+       //! Selecionar nombre y apellido random de la lista ++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+       for (int i = 0; i < 30; i ++) {
+              String [] nombres = {"Juan", "Edu", "Sergi", "Ana", "Rafa", "Adriana", "Javi", "Pepe", "Juan", "Juanjo", "Jose", "Eva" };
+              String [] apellidos = {"Suarez", "Sanchez", "Chaquet", "Amri", "Peris", "Climent", "Terol", "Molla", "Morata", "Navarra"};
+
+            int indexNombre = random.nextInt(nombres.length);
+            String nombreAleatorio = nombres[indexNombre];
+
+            int indexApellido = random.nextInt(apellidos.length);
+            String appellidoAleatorio = apellidos[indexApellido];
+
+            System.out.println("Nombre y apellido:  " + nombreAleatorio + " "+ appellidoAleatorio);
+       }
+     //!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+      
+
+
+
 }
 }
