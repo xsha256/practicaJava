@@ -45,7 +45,7 @@ public class Persona {
     //! Mostrar info de persona
     public void mostrarInfo() {
         System.out.println("Id: " + this.id);
-        System.out.println("Nombre: " + this.nombre);
+        System.out.println("Nombre y apellido: " + this.nombre);
         System.out.println("Telefono: " + this.telefono);
     }
 

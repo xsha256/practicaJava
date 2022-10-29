@@ -5,6 +5,8 @@ import app.curso.banco.util.*;
 import java.util.HashMap;
 import java.util.Scanner;
 
+//todos modificar Actualización gestor y cliente sobreescibe las cuentas algo que no se puede modificar
+
 public class ConsolaBanco {
     public static void main(String[] args) {
 
@@ -15,13 +17,22 @@ public class ConsolaBanco {
 
         Scanner keyboard  = new Scanner(System.in);
         
-        
+        //! colores para JAVA:
+        // Negro:\033[30m
+        //  Rojo:\033[31m
+        //  Verde:\033[32m
+        //  Amarillo:\033[33m
+        //  Azul:\033[34m
+        //  Magenta:\033[35m
+        //  Blanco:\033[37m 
+        //  Cyan:\033[36m
+        //  Reset:\u001B[0m
     
 
        int menuSeleciona = -1;
        do{
         
-                System.out.println("1. Inserción de un gestor.");                                                                  //todo:  done
+                System.out.println("\033[33m1. Inserción de un gestor.");                                                                  //todo:  done
                 System.out.println("2. Inserción masiva de gestores con datos aleatorios.");                  //todo:  done
                 System.out.println("3. Obtención de un gestor.");                                                             //todo:  done
                 System.out.println("4. Obtención de todos los gestores.");                                             //todo:  done
@@ -45,22 +56,26 @@ public class ConsolaBanco {
                 menuSeleciona = keyboard.nextInt();
                     switch (menuSeleciona){
                         case 0:
-                            System.out.println("Saliendo...");
+                            System.out.println("\033[35m Saliendo...");
                             break;
                         case 1:
-                            System.out.println("1. Inserción de un gestor.");
+                            System.out.println("\033[32m1. Inserción de un gestor.");
                                                                           //! insertar los datos del gestor
                             System.out.print("Id: ");
                             int id = keyboard.nextInt();
-                            System.out.print("Nombre y Apellido: ");
+                            System.out.print("Nombre: ");
                             String nombre = keyboard.next();
-                            System.out.print("Telefono: ");
+                            System.out.print("Apellido: ");
+                            String apellido = keyboard.next();
+                            System.out.print("Tu telefono(en este formato: +34-567-65-54-43): ");
                             String tel = keyboard.next();
                             System.out.print("Id de oficina: ");
                             int idOficina = keyboard.nextInt();
+
+                            String nombreApellido = nombre + " " + apellido;
                                                                            //! Crear el gestor
                             if (gestores.get(id) == null){
-                                Gestor gestor1 = new Gestor(id, nombre,  tel, idOficina);
+                                Gestor gestor1 = new Gestor(id, nombreApellido,  tel, idOficina);
                                                                             //! Crear el HashMap
                                 gestores.put(id, gestor1);
                                 System.out.println("Gestor creado con Id: " + gestores.get(id).getId() );
@@ -69,7 +84,7 @@ public class ConsolaBanco {
                             }
                             break;
                         case 2:
-                            System.out.println("2. Inserción masiva de gestores con datos aleatorios.");
+                            System.out.println("\033[32m2. Inserción masiva de gestores con datos aleatorios.");
                             System.out.print("¿Cuantos gestores quieres crear? ");
                             int gestoresACrear = keyboard.nextInt();
 
@@ -86,7 +101,7 @@ public class ConsolaBanco {
                             }
                             break;
                         case 3:
-                            System.out.println("3. Obtención de un gestor.");
+                            System.out.println("\033[34m3. Obtención de un gestor.");
                             System.out.print("Id: ");
                              id = keyboard.nextInt();
                             if (gestores.get(id) != null) {
@@ -97,7 +112,7 @@ public class ConsolaBanco {
                             break;
 
                         case 4:
-                            System.out.println("4. Obtención de todos los gestores.");
+                            System.out.println("\033[34m4. Obtención de todos los gestores.");
                             if (gestores != null) {
                                 gestores.forEach((clave, valor) -> { 
                                 valor.mostrarInfo();
@@ -107,7 +122,7 @@ public class ConsolaBanco {
                             } 
                             break;
                         case 5:
-                            System.out.println("5. Actualización de un gestor.");
+                            System.out.println("\033[36m5. Actualización de un gestor.");
                             System.out.print("Id: ");
                              id = keyboard.nextInt();
                              System.out.println("El nombre actual: " + gestores.get(id).getNombre() + " si  quieres mantenerlo reescribelo");
@@ -126,7 +141,7 @@ public class ConsolaBanco {
 
                             break;
                         case 6:
-                            System.out.println("6. Eliminación de un gestor.");
+                            System.out.println("\033[31m6. Eliminación de un gestor.");
                             System.out.print("Id: ");
                              id = keyboard.nextInt();
                              if (gestores.get(id) != null) {
@@ -137,20 +152,24 @@ public class ConsolaBanco {
                             } 
                             break;
                         case 7:
-                            System.out.println("7. Inserción de un cliente.");
+                            System.out.println("\033[32m7. Inserción de un cliente.");
                             System.out.print("Id: ");
                             int idCliente = keyboard.nextInt();
-                            System.out.print("Nombre y Apellido: ");
-                            String nombreClietne = keyboard.next();
-                            System.out.print("Telefono: ");
+                            System.out.print("Nombre: ");
+                            String nombreCliente = keyboard.next();
+                            System.out.print("Apellido: ");
+                            String apellidoCliente = keyboard.next();
+                            System.out.print("Tu telefono(en este formato: +34-567-65-54-43): ");
                             String telCliente = keyboard.next();
                             System.out.print("Id de tu cuenta empieza por ES: ");
                             String idEs = keyboard.next();
                             System.out.print("Cantidad de dinero: ");
                             float dinero = keyboard.nextFloat();
 
+                            String nombreApellidoCliente = nombreCliente + " " + apellidoCliente;
+
                             if (cliente.get(idCliente) == null){
-                                Cliente cliente1 = new Cliente(idCliente, nombreClietne,  telCliente);
+                                Cliente cliente1 = new Cliente(idCliente, nombreApellidoCliente,  telCliente);
                                  //! Crear el HashMap
                                 cliente.put(idCliente, cliente1);
                                 System.out.println("Cliente creado con Id: " + cliente.get(idCliente).getId() );
@@ -161,7 +180,7 @@ public class ConsolaBanco {
                             }
                             break;
                         case 8:
-                            System.out.println("8. Obtención de un cliente.");
+                            System.out.println("\033[34m8. Obtención de un cliente.");
                             System.out.print("Id: ");
                              idCliente = keyboard.nextInt();
                             if (cliente.get(idCliente) != null) {
@@ -172,7 +191,7 @@ public class ConsolaBanco {
                             break;
 
                         case 9:
-                            System.out.println("9. Obtención de todos los clientes.");
+                            System.out.println("\033[34m9. Obtención de todos los clientes.");
                             if (cliente != null) {
                                 cliente.forEach((clave, valor) -> { 
                                 valor.mostrarInfo();
@@ -182,7 +201,7 @@ public class ConsolaBanco {
                             } 
                             break;
                         case 10:
-                                System.out.println("10. Actualización de un cliente.");
+                                System.out.println("\033[36m10. Actualización de un cliente.");
                                 
                                 System.out.print("Id: ");
                                 id = keyboard.nextInt();
@@ -198,7 +217,7 @@ public class ConsolaBanco {
                                 cliente1.setCliente(id, nombre, tel);
                                 break;
                             case 11:
-                                System.out.println("11. Eliminación de un cliente.");
+                                System.out.println("\033[31m11. Eliminación de un cliente.");
                                 System.out.print("Id: ");
                                 id = keyboard.nextInt();
                                 if (cliente.get(id) != null) {
