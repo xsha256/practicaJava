@@ -10,7 +10,7 @@ public class Gestor extends Persona {
                 public Gestor(){
                 }
 
-                //! constructor parametrizado 
+                //! constructor parametrizado 1
             public Gestor (int id, String nombre, String telefono, int idOficina){
                 //*  atributos heredados de Persona
                 super(id, nombre, telefono);
@@ -28,15 +28,35 @@ public class Gestor extends Persona {
             public String getNombre() {
                 return nombre;
             }
+            public String getTelefono() {
+                return telefono;
+            }
 
             public String toString(){
                 return "id: " + this.id;
             
             }
 
+            // public String getGestor(){
+            //     return "id: " + this.id;
+            //     return "nombre: " + this.nombre;
+            //     return "telefono: " + this.telefono;
+            //     return "Id de oficina: " +  this.idOficina;
+            
+            // }
+
 
                 //! Modificador
             public void setIdOficina(int idOficina) {
+               
+                this.idOficina = idOficina;
+
+            }
+
+            public void setGestor(int id, String nombre, String telefono, int idOficina) {
+                super.id = id;
+                super.nombre = nombre;
+                super.telefono = telefono;
                 this.idOficina = idOficina;
             }
 

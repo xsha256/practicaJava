@@ -19,7 +19,7 @@ public class Cliente extends Persona{
                 super(id, nombre, telefono);
     
                 //* atributo no heredado creado en Cliente.
-                this.totalDinero = 0;
+                // this.totalDinero = 0;
                 this.cuentas = new HashMap<>();
             
         }
@@ -64,6 +64,13 @@ public class Cliente extends Persona{
 
     public void setCuentas (HashMap <String, Float> cuentas) {
         this.cuentas = cuentas;
+    }
+
+    public void setCliente(int id, String nombre, String telefono) {
+        super.id = id;
+        super.nombre = nombre;
+        super.telefono = telefono;
+       
     }
 
      //* Metodo ingresarDinero
