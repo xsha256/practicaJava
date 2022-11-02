@@ -35,7 +35,17 @@ public class Cliente extends Persona{
         
     }
 
-        //! Mostar info 
+
+         //! Mostar info 1
+         public void mostrarInfo1() {
+            super.mostrarInfo1();
+            System.out.println("Cuentas:");
+            mostrarCuentas();
+            System.out.println("Total de dinero: " + totalDinero + "€\n");
+           
+        }
+
+        //! Mostar info 2
     public void mostrarInfo() {
         super.mostrarInfo();
         System.out.println("Cuentas:");
@@ -55,6 +65,10 @@ public class Cliente extends Persona{
 
     public HashMap <String, Float>  getCuentas()  {
         return this.cuentas;
+    }
+    public String getApellido() {
+                
+        return nombre;
     }
 
           //! Modificador

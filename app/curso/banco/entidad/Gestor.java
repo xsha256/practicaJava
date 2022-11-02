@@ -28,6 +28,10 @@ public class Gestor extends Persona {
             public String getNombre() {
                 return nombre;
             }
+            public String getApellido() {
+                
+                return nombre;
+            }
             public String getTelefono() {
                 return telefono;
             }
@@ -62,7 +66,12 @@ public class Gestor extends Persona {
 
             
 
-                //! Mostar info 
+               //! Mostar info  1
+               public void mostrarInfo1() {
+                super.mostrarInfo1();
+                System.out.println("Id de oficina: " + idOficina + "\n");
+            }
+                //! Mostar info 2
             public void mostrarInfo() {
                 super.mostrarInfo();
                 System.out.println("Id de oficina: " + idOficina + "\n");

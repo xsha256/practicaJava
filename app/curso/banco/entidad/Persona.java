@@ -42,7 +42,12 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    //! Mostrar info de persona
+    //! Mostrar info de persona 1
+    public void mostrarInfo1() {
+        System.out.println("Nombre y apellido: " + this.nombre);
+        System.out.println("Telefono: " + this.telefono);
+    }
+    //! Mostrar info de persona 2
     public void mostrarInfo() {
         System.out.println("Id: " + this.id);
         System.out.println("Nombre y apellido: " + this.nombre);

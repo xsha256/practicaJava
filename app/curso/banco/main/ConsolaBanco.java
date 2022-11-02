@@ -5,8 +5,6 @@ import app.curso.banco.util.*;
 import java.util.HashMap;
 import java.util.Scanner;
 
-//todos modificar Actualización gestor y cliente sobreescibe las cuentas algo que no se puede modificar
-
 public class ConsolaBanco {
     public static void main(String[] args) {
 
@@ -14,6 +12,8 @@ public class ConsolaBanco {
         
         HashMap <Integer, Gestor> gestores = new HashMap<>();
         HashMap<Integer, Cliente> cliente = new HashMap<>();
+        HashMap<Integer, Mensaje> mensaje = new HashMap<>();
+        HashMap<Integer, Transferencia> transferencia = new HashMap<>();
 
         Scanner keyboard  = new Scanner(System.in);
         
@@ -28,11 +28,18 @@ public class ConsolaBanco {
         //  Cyan:\033[36m
         //  Reset:\u001B[0m
     
+        System.out.println("\n\033[32m                                     #     # ####### #     # #     #    ######     #    #     #  #####  #######");
+        System.out.println("                                     ##   ## #       ##    # #     #    #     #   # #   ##    # #     # #     #");
+        System.out.println("                                     # # # # #       # #   # #     #    #     #  #   #  # #   # #       #     #");
+        System.out.println("                                     #  #  # #####   #  #  # #     #    ######  #     # #  #  # #       #     #");
+        System.out.println("                                     #     # #       #   # # #     #    #     # ####### #   # # #       #     #");
+        System.out.println("                                     #     # #       #    ## #     #    #     # #     # #    ## #     # #     #");
+        System.out.println("                                     #     # ####### #     #  #####     ######  #     # #     #  #####  #######");
 
        int menuSeleciona = -1;
        do{
         
-                System.out.println("\033[33m1. Inserción de un gestor.");                                                                  //todo:  done
+                System.out.println("\033[33m1. Inserción de un gestor.");                                                  //todo:  done
                 System.out.println("2. Inserción masiva de gestores con datos aleatorios.");                  //todo:  done
                 System.out.println("3. Obtención de un gestor.");                                                             //todo:  done
                 System.out.println("4. Obtención de todos los gestores.");                                             //todo:  done
@@ -43,12 +50,12 @@ public class ConsolaBanco {
                 System.out.println("9. Obtención de todos los clientes.");                                       //todo:  done
                 System.out.println("10. Actualización de un cliente.");                                            //todo:  done
                 System.out.println("11. Eliminación de un cliente.");                                              //todo:  done
-                System.out.println("12. Obtención de un mensaje.");                                           
-                System.out.println("13. Obtención de todos los mensajes.");                             
+                System.out.println("12. Obtención de un mensaje.");                                           //todo:  done
+                System.out.println("13. Obtención de todos los mensajes.");                             //todo:  done
                 System.out.println("14. Envío de un mensaje.");
-                System.out.println("15. Obtención de una transferencia.");
-                System.out.println("16. Obtención de todas las trasferencias");
-                System.out.println("17. Envío de una transferencia.");
+                System.out.println("15. Obtención de una transferencia.");                              //todo:  done
+                System.out.println("16. Obtención de todas las trasferencias");                     //todo:  done
+                System.out.println("17. Envío de una transferencia.");                                      
                 System.out.println("18. Login y registro.");
                 System.out.println("0. Salir");
 
@@ -57,6 +64,7 @@ public class ConsolaBanco {
                     switch (menuSeleciona){
                         case 0:
                             System.out.println("\033[35m Saliendo...");
+                            System.out.println("\033[35m ¡Hasta luego, Lucas!...");
                             break;
                         case 1:
                             System.out.println("\033[32m1. Inserción de un gestor.");
@@ -71,6 +79,7 @@ public class ConsolaBanco {
                             String tel = keyboard.next();
                             System.out.print("Id de oficina: ");
                             int idOficina = keyboard.nextInt();
+                            
 
                             String nombreApellido = nombre + " " + apellido;
                                                                            //! Crear el gestor
@@ -105,7 +114,7 @@ public class ConsolaBanco {
                             System.out.print("Id: ");
                              id = keyboard.nextInt();
                             if (gestores.get(id) != null) {
-                                gestores.get(id).mostrarInfo();
+                                gestores.get(id).mostrarInfo1();
                             } else {
                                 System.out.println("Gestor no creado");
                             } 
@@ -125,9 +134,12 @@ public class ConsolaBanco {
                             System.out.println("\033[36m5. Actualización de un gestor.");
                             System.out.print("Id: ");
                              id = keyboard.nextInt();
-                             System.out.println("El nombre actual: " + gestores.get(id).getNombre() + " si  quieres mantenerlo reescribelo");
-                            System.out.print("Nombre y Apellido: ");
+                             System.out.println("El nombre actual: " + gestores.get(id).getNombre() + " si  quieres mantener el nombre reescribelo");
+                            System.out.print("Nombre: ");
                             nombre = keyboard.next();
+                            System.out.println("El apellido actual: " + gestores.get(id).getApellido() + " si  quieres mantener el apellido reescribelo");
+                            System.out.print("Apellido: ");
+                             apellido = keyboard.next();
                             System.out.println("El telefono actual: " + gestores.get(id).getTelefono() + " si  quieres mantenerlo reescribelo");
                             System.out.print("Telefono: ");
                             tel = keyboard.next();
@@ -135,18 +147,23 @@ public class ConsolaBanco {
                             System.out.print("Id de oficina: ");
                             idOficina = keyboard.nextInt();
 
-                            Gestor gestor1 = new Gestor(id, nombre,  tel, idOficina);
+                            
+
+                             nombreApellido = nombre + " " + apellido;
+
+                            Gestor gestor1 = new Gestor(id, nombreApellido,  tel, idOficina);
                             gestores.put(id, gestor1);
-                            gestor1.setGestor(id, nombre, tel, idOficina);
+                            // gestor1.setGestor(id, nombre, tel, idOficina);
 
                             break;
                         case 6:
                             System.out.println("\033[31m6. Eliminación de un gestor.");
                             System.out.print("Id: ");
                              id = keyboard.nextInt();
+                             
                              if (gestores.get(id) != null) {
                                 gestores.remove(id);
-                                System.out.println("Se ha eliminar el gestor con este id:  " + id);
+                                System.out.println("Se ha eliminado el gestor con este id:  " + id);
                             } else {
                                 System.out.println("Gestor no creado");
                             } 
@@ -184,7 +201,7 @@ public class ConsolaBanco {
                             System.out.print("Id: ");
                              idCliente = keyboard.nextInt();
                             if (cliente.get(idCliente) != null) {
-                                cliente.get(idCliente).mostrarInfo();
+                                cliente.get(idCliente).mostrarInfo1();
                             } else {
                                 System.out.println("Cliente no creado");
                             } 
@@ -202,19 +219,29 @@ public class ConsolaBanco {
                             break;
                         case 10:
                                 System.out.println("\033[36m10. Actualización de un cliente.");
+
+
                                 
+                                
+
                                 System.out.print("Id: ");
-                                id = keyboard.nextInt();
-                                System.out.println("El nombre actual: " + cliente.get(id).getNombre() + " si  quieres mantenerlo reescribelo");
-                                System.out.print("Nombre y Apellido: ");
+                                idCliente = keyboard.nextInt();
+                                Cliente actualizarClt = cliente.get(idCliente);
+                                System.out.println("El nombre actual: " + cliente.get(idCliente).getNombre() + " si  quieres mantener el nombre reescribelo");
+                                System.out.print("Nombre: ");
                                 nombre = keyboard.next();
-                                System.out.println("El telefono actual: " + cliente.get(id).getTelefono() + " si  quieres mantenerlo reescribelo");
+                                System.out.println("El apellido actual: " + cliente.get(idCliente).getApellido() + " si  quieres mantener el apellido reescribelo");
+                                System.out.print("Apellido: ");
+                                apellido = keyboard.next();
+                                System.out.println("El telefono actual: " + cliente.get(idCliente).getTelefono() + " si  quieres mantenerlo reescribelo");
                                 System.out.print("Telefono: ");
                                 tel = keyboard.next();
 
-                                Cliente cliente1 = new Cliente(id, nombre,  tel);
-                                cliente.put(id, cliente1);
-                                cliente1.setCliente(id, nombre, tel);
+                                nombreApellido = nombre + " " + apellido;
+                                
+                                // Cliente cliente1 = new Cliente(id, nombreApellido,  tel);
+                                // cliente.put(id, cliente1);
+                                actualizarClt.setCliente(idCliente, nombreApellido, tel);
                                 break;
                             case 11:
                                 System.out.println("\033[31m11. Eliminación de un cliente.");
@@ -222,25 +249,93 @@ public class ConsolaBanco {
                                 id = keyboard.nextInt();
                                 if (cliente.get(id) != null) {
                                    cliente.remove(id);
-                                   System.out.println("Se ha eliminar el gestor con este id:  " + id);
+                                   System.out.println("Se ha eliminado el gestor con este id:  " + id);
                                } else {
                                    System.out.println("Gestor no creado");
                                } 
                                break;
                             case 12:
                                 System.out.println("12. Obtención de un mensaje.");
+                                System.out.print("Si quieres crear un nuevo mensaje elige 1 sino elige 0: ");
+                                int op = keyboard.nextInt();
+                               if (op == 1) {
+                                    System.out.print("Numero de mensaje: ");
+                                    int numero = keyboard.nextInt();
+                                    System.out.print("Mensaje: ");
+                                    String men = keyboard.next();
+                                    if (mensaje.get(numero) == null){
+                                        Mensaje mensaje1 = new Mensaje(numero, men);
+                                        
+                                                                                    //! Crear el HashMap
+                                        mensaje.put(numero, mensaje1);
+                                        
+                                        // System.out.println("mensaje numero: " + mensaje.get(numero).getNumero());
+                                    } else{
+                                        System.out.println("No existe este mensaje" + mensaje.get(numero).getNumero() );
+                                    }
+                                 } else if (op == 0){
+                                    System.out.print("Numero de mensaje: ");
+                                    int numero = keyboard.nextInt();
+                                    if (mensaje.get(numero) != null) {
+                                        mensaje.get(numero).mostrarInfo();
+                                    } else {
+                                        System.out.println("No existe este mensaje");
+                                    } 
+                                }
                                 break;
+                                
                             case 13: 
                                 System.out.println("13. Obtención de todos los mensajes.");
+                                if (mensaje != null) {
+                                    mensaje.forEach((clave, valor) -> { 
+                                    valor.mostrarInfo();
+                                     });
+                                } else {
+                                    System.out.println("No existe este mensaje");
+                                } 
                                 break;
                             case 14:
                                 System.out.println("14. Envío de un mensaje.");
+                                
                                 break;
                             case 15:
                                 System.out.println("15. Obtención de una transferencia.");
+                                System.out.print("Si quieres crear una nueva transferencia elige 1 sino elige 0: ");
+                                op = keyboard.nextInt();
+                               if (op == 1) {
+                                    System.out.print("Numero de transferencia: ");
+                                    int numTrans = keyboard.nextInt();
+                                    System.out.print("Cantidad: ");
+                                    float cantidad = keyboard.nextFloat();
+                                    if (mensaje.get(numTrans) == null){
+                                        Transferencia transferencia1 = new Transferencia(numTrans, cantidad);
+                                        
+                                                                                    //! Crear el HashMap
+                                        transferencia.put(numTrans, transferencia1);
+                                        
+                                        // System.out.println("mensaje numero: " + mensaje.get(numero).getNumero());
+                                    } else{
+                                        System.out.println("No existe esta transferencia" + transferencia.get(numTrans).getNumeroTrans() );
+                                    }
+                                 } else if (op == 0){
+                                    System.out.print("Numero de transferencia: ");
+                                    int numTrans = keyboard.nextInt();
+                                    if (transferencia.get(numTrans) != null) {
+                                        transferencia.get(numTrans).mostrarInfo1();
+                                    } else {
+                                        System.out.println("No existe esta transferencia");
+                                    } 
+                                }
                                 break;
                             case 16: 
                                 System.out.println("16. Obtención de todas las trasferencias");
+                                if (transferencia != null) {
+                                    transferencia.forEach((clave, valor) -> { 
+                                    valor.mostrarInfo();
+                                     });
+                                } else {
+                                    System.out.println("No existe este mensaje");
+                                } 
                                 break;
                             case 17: 
                                 System.out.println("17. Envío de una transferencia.");
