@@ -16,10 +16,16 @@ public class ConsolaBanco {
         HashMap<Integer, Transferencia> transferencia = new HashMap<>();
 
         Scanner keyboard  = new Scanner(System.in);
+        Cliente cliente1 = null;
+        Gestor gestor1 = null;
+        String men = null;
+        Transferencia transferencia1 = null;
+        Mensaje mensaje1 = null;
+        int nuMensaje = 0; 
         
         //! colores para JAVA:
         // Negro:\033[30m
-        //  Rojo:\033[31m
+        //  Rojo: \033[31m
         //  Verde:\033[32m
         //  Amarillo:\033[33m
         //  Azul:\033[34m
@@ -52,16 +58,17 @@ public class ConsolaBanco {
                 System.out.println("11. Eliminación de un cliente.");                                              //todo:  done
                 System.out.println("12. Obtención de un mensaje.");                                           //todo:  done
                 System.out.println("13. Obtención de todos los mensajes.");                             //todo:  done
-                System.out.println("14. Envío de un mensaje.");
+                System.out.println("14. Envío de un mensaje.");                                                 //todo: done
                 System.out.println("15. Obtención de una transferencia.");                              //todo:  done
                 System.out.println("16. Obtención de todas las trasferencias");                     //todo:  done
-                System.out.println("17. Envío de una transferencia.");                                      
-                System.out.println("18. Login y registro.");
+                System.out.println("17. Envío de una transferencia.");                                     //todo: done
+                System.out.println("18. Login y registro.");                                                      //todo: done
                 System.out.println("0. Salir");
 
                 System.out.print("Opcion: ");
                 menuSeleciona = keyboard.nextInt();
                     switch (menuSeleciona){
+
                         case 0:
                             System.out.println("\033[35m Saliendo...");
                             System.out.println("\033[35m ¡Hasta luego, Lucas!...");
@@ -84,7 +91,7 @@ public class ConsolaBanco {
                             String nombreApellido = nombre + " " + apellido;
                                                                            //! Crear el gestor
                             if (gestores.get(id) == null){
-                                Gestor gestor1 = new Gestor(id, nombreApellido,  tel, idOficina);
+                                 gestor1 = new Gestor(id, nombreApellido,  tel, idOficina);
                                                                             //! Crear el HashMap
                                 gestores.put(id, gestor1);
                                 System.out.println("Gestor creado con Id: " + gestores.get(id).getId() );
@@ -151,7 +158,7 @@ public class ConsolaBanco {
 
                              nombreApellido = nombre + " " + apellido;
 
-                            Gestor gestor1 = new Gestor(id, nombreApellido,  tel, idOficina);
+                             gestor1 = new Gestor(id, nombreApellido,  tel, idOficina);
                             gestores.put(id, gestor1);
                             // gestor1.setGestor(id, nombre, tel, idOficina);
 
@@ -184,9 +191,9 @@ public class ConsolaBanco {
                             float dinero = keyboard.nextFloat();
 
                             String nombreApellidoCliente = nombreCliente + " " + apellidoCliente;
-
+                           
                             if (cliente.get(idCliente) == null){
-                                Cliente cliente1 = new Cliente(idCliente, nombreApellidoCliente,  telCliente);
+                                 cliente1 = new Cliente(idCliente, nombreApellidoCliente,  telCliente);
                                  //! Crear el HashMap
                                 cliente.put(idCliente, cliente1);
                                 System.out.println("Cliente creado con Id: " + cliente.get(idCliente).getId() );
@@ -219,11 +226,6 @@ public class ConsolaBanco {
                             break;
                         case 10:
                                 System.out.println("\033[36m10. Actualización de un cliente.");
-
-
-                                
-                                
-
                                 System.out.print("Id: ");
                                 idCliente = keyboard.nextInt();
                                 Cliente actualizarClt = cliente.get(idCliente);
@@ -255,37 +257,19 @@ public class ConsolaBanco {
                                } 
                                break;
                             case 12:
-                                System.out.println("12. Obtención de un mensaje.");
-                                System.out.print("Si quieres crear un nuevo mensaje elige 1 sino elige 0: ");
-                                int op = keyboard.nextInt();
-                               if (op == 1) {
-                                    System.out.print("Numero de mensaje: ");
-                                    int numero = keyboard.nextInt();
-                                    System.out.print("Mensaje: ");
-                                    String men = keyboard.next();
-                                    if (mensaje.get(numero) == null){
-                                        Mensaje mensaje1 = new Mensaje(numero, men);
-                                        
-                                                                                    //! Crear el HashMap
-                                        mensaje.put(numero, mensaje1);
-                                        
-                                        // System.out.println("mensaje numero: " + mensaje.get(numero).getNumero());
-                                    } else{
-                                        System.out.println("No existe este mensaje" + mensaje.get(numero).getNumero() );
-                                    }
-                                 } else if (op == 0){
-                                    System.out.print("Numero de mensaje: ");
-                                    int numero = keyboard.nextInt();
-                                    if (mensaje.get(numero) != null) {
-                                        mensaje.get(numero).mostrarInfo();
-                                    } else {
-                                        System.out.println("No existe este mensaje");
-                                    } 
-                                }
+                                System.out.println("\033[34m12. Obtención de un mensaje.");
+                                System.out.print("Mensaje numero: ");
+                                nuMensaje = keyboard.nextInt();
+                                if (mensaje.get(nuMensaje) != null) {
+                                    mensaje.get(nuMensaje).mostrarInfo1();
+                                } else {
+                                    System.out.println("Gestor no creado");
+                                } 
+
                                 break;
                                 
                             case 13: 
-                                System.out.println("13. Obtención de todos los mensajes.");
+                                System.out.println("\033[34m13. Obtención de todos los mensajes.");
                                 if (mensaje != null) {
                                     mensaje.forEach((clave, valor) -> { 
                                     valor.mostrarInfo();
@@ -295,40 +279,35 @@ public class ConsolaBanco {
                                 } 
                                 break;
                             case 14:
-                                System.out.println("14. Envío de un mensaje.");
+                                System.out.println("\033[31m14. Envío de un mensaje.");
+                                System.out.print("Mensaje numero: ");
+                                 nuMensaje = keyboard.nextInt();
+                                
+                                System.out.print("Mensaje: ");
+                                  men = keyboard.next();
+                                        
+                                 mensaje1 = new Mensaje(nuMensaje, Mensaje.TIPO_CLIENTE, cliente1.getId(), Mensaje.TIPO_GESTOR, gestor1.getId(), men);
+                                // System.out.println(mensaje1);
+
+                                                                                    //! Crear el HashMap
+                                mensaje.put(nuMensaje, mensaje1);
+                                System.out.println(mensaje1);
                                 
                                 break;
                             case 15:
-                                System.out.println("15. Obtención de una transferencia.");
-                                System.out.print("Si quieres crear una nueva transferencia elige 1 sino elige 0: ");
-                                op = keyboard.nextInt();
-                               if (op == 1) {
-                                    System.out.print("Numero de transferencia: ");
-                                    int numTrans = keyboard.nextInt();
-                                    System.out.print("Cantidad: ");
-                                    float cantidad = keyboard.nextFloat();
-                                    if (mensaje.get(numTrans) == null){
-                                        Transferencia transferencia1 = new Transferencia(numTrans, cantidad);
-                                        
-                                                                                    //! Crear el HashMap
-                                        transferencia.put(numTrans, transferencia1);
-                                        
-                                        // System.out.println("mensaje numero: " + mensaje.get(numero).getNumero());
-                                    } else{
-                                        System.out.println("No existe esta transferencia" + transferencia.get(numTrans).getNumeroTrans() );
-                                    }
-                                 } else if (op == 0){
-                                    System.out.print("Numero de transferencia: ");
-                                    int numTrans = keyboard.nextInt();
-                                    if (transferencia.get(numTrans) != null) {
-                                        transferencia.get(numTrans).mostrarInfo1();
-                                    } else {
-                                        System.out.println("No existe esta transferencia");
-                                    } 
-                                }
+                                System.out.println("\033[34m15. Obtención de una transferencia.");
+                                System.out.print("Mensaje numero: ");
+                                nuMensaje = keyboard.nextInt();
+                                if (mensaje.get(nuMensaje) != null) {
+                                    mensaje.get(nuMensaje).mostrarInfo1();
+                                } else {
+                                    System.out.println("Gestor no creado");
+                                } 
+                                
                                 break;
                             case 16: 
-                                System.out.println("16. Obtención de todas las trasferencias");
+
+                                System.out.println("\033[34m16. Obtención de todas las trasferencias");
                                 if (transferencia != null) {
                                     transferencia.forEach((clave, valor) -> { 
                                     valor.mostrarInfo();
@@ -338,10 +317,61 @@ public class ConsolaBanco {
                                 } 
                                 break;
                             case 17: 
-                                System.out.println("17. Envío de una transferencia.");
+                                System.out.println("\033[31m17. Envío de una transferencia.");
+                                System.out.print("Mensaje numero: ");
+                                 nuMensaje = keyboard.nextInt();
+
+                                 System.out.print("Mensaje: ");
+                                  men = keyboard.next();
+
+                                  System.out.print("Cantidad de dinero: ");
+                                  float cantidad = keyboard.nextFloat();
+
+                                 transferencia1 = new Transferencia(nuMensaje, Transferencia.TIPO_CLIENTE, cliente1.getId(), Transferencia.TIPO_GESTOR, gestor1.getId(), men, cantidad);
+                                // System.out.println(transferencia1);
+                                                //! Crear el HashMap
+                                transferencia.put(nuMensaje, transferencia1);
+                                System.out.println(transferencia1);
                                 break;
                             case 18:
                                 System.out.println("18. Login y registro.");
+
+                                System.out.print("Si quieres acceder pulsa 1, si quieres registrar pulsa 2: ");
+                               int  op = keyboard.nextInt();
+
+                                if (op == 1) {
+                                System.out.print("Id de cliente: ");
+                                 idCliente = keyboard.nextInt();
+                                 Cliente clienteParaLogin = cliente.get(idCliente);
+
+                                 System.out.print(" Password: ");
+                                 String pass = keyboard.next(); 
+
+                                 String passCliente = clienteParaLogin.getPassword();
+
+                                 boolean tienePass = passCliente != null;
+
+                                 boolean loginCorrecto =  tienePass && passCliente.equals(pass);
+
+                                 if (loginCorrecto) {
+                                    System.out.println("Login correcto!.");
+                                                                        
+                                 } else {
+                                    System.out.println("Incorrecto");
+                                 }
+                            } else if(op == 2) {
+
+                                 System.out.println(" registrar.");
+                                 System.out.print(" Id de cliente para registrar como usuario: ");
+                                 int idClienteRegistrar = keyboard.nextInt();
+                                 Cliente clienteParaRegistro = cliente.get(idClienteRegistrar);
+                                 System.out.print("Nueva contraseña: ");
+                                 String Nuevopass = keyboard.next();
+                                 clienteParaRegistro.setPassword(Nuevopass);
+                                 //actualizar cliente en la lista
+                                 cliente.put(clienteParaRegistro.getId(), clienteParaRegistro);       
+                            }                          
+
                                 break;
                         default: 
                         System.out.print("Opcion incorrecta...");
@@ -349,33 +379,6 @@ public class ConsolaBanco {
             } 
         }while (menuSeleciona != 0);
         keyboard.close();
-
-
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

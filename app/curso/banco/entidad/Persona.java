@@ -5,12 +5,14 @@ public class Persona {
     protected int id;
     protected String nombre;
     protected String telefono;
+    protected String password;
 
     //! constructor por defecto
      public Persona(){
         
     }
 
+  
     //! constructor parametrizado 
      public Persona(int id, String nombre, String telefono) {
 
@@ -19,6 +21,15 @@ public class Persona {
         this.telefono = telefono;
 
      }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
         public int getId() {
         return id;
@@ -53,6 +64,8 @@ public class Persona {
         System.out.println("Nombre y apellido: " + this.nombre);
         System.out.println("Telefono: " + this.telefono);
     }
+
+
 
 
 
