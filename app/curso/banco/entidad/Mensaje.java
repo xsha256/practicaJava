@@ -84,15 +84,25 @@ public class Mensaje {
     
     }
 
-    //! Mostar info 
+    //! Mostar info 0
      public void mostrarInfo() {
         System.out.println("Numero de mensaje: " + nuMensaje);
-        System.out.println("Mensaje: " + mensaje + "\n");
+        System.out.println("Mensaje: " + mensaje);
+        System.out.println("Del cliente con id: " + this.idEmisor +", para el gestor con id: "+ idReceptor +  ". \n");
+
     }
     //! Mostar info 1
     public void mostrarInfo1() {
+        // System.out.println("Numero de mensaje: " + nuMensaje);
+        System.out.println("Mensaje: " + mensaje);
+        System.out.println("Del cliente con id: " + this.idEmisor +", para el gestor con id: "+ idReceptor +  ". Mensaje: " + this.mensaje + "\n");
+    }
+
+     //! Mostar info 2
+     public void mostrarInfo2() {
         System.out.println("Numero de mensaje: " + nuMensaje);
         System.out.println("Mensaje: " + mensaje);
+
     }
 
 

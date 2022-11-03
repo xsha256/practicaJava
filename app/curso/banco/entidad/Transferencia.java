@@ -47,6 +47,12 @@ public class Transferencia extends Mensaje {
         System.out.println("Cantidad de transferencia: " + cantidad +"€" +"\n");
     }
 
+      //! Mostar info 3
+      public void mostrarInfo3() {
+        super.mostrarInfo2();
+        System.out.println("Del cliente con id: " + this.idEmisor +", para el gestor con id: "+ idReceptor +  ". Cantidad de: " + this.cantidad + "€" + "\n");
+    }
+
 
 
 }
