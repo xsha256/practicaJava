@@ -19,7 +19,6 @@ public class Cliente extends Persona{
                 super(id, nombre, telefono);
     
                 //* atributo no heredado creado en Cliente.
-                // this.totalDinero = 0;
                 this.cuentas = new HashMap<>();
             
         }
