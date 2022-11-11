@@ -420,7 +420,7 @@ public class ConsolaBanco {
                                 System.out.print("Mensaje numero: ");
                                  nuMensaje = keyboard.nextInt();
 
-                                if (cliente1 != null && gestor1 != null) {
+                                if (cliente1 != null && gestor1 != null || gestor2 != null) {
 
                                     System.out.print("Escribe el id del cliente: ");
                                     idCliente = keyboard.nextInt();
@@ -483,7 +483,7 @@ public class ConsolaBanco {
                                 System.out.print("Mensaje numero: ");
                                  nuMensaje = keyboard.nextInt();
 
-                                 if (cliente1 != null && gestor1 != null) {
+                                 if (cliente1 != null && gestor1 != null || gestor2 != null) {
 
                                     System.out.print("Escribe el id del cliente: ");
                                     idCliente = keyboard.nextInt();
